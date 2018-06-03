@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomersController">
+   <children>
+      <VBox prefHeight="768.0" prefWidth="205.0" style="-fx-background-color: gainsboro;">
+         <children>
+            <Button fx:id="userBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="205.0" style="-fx-background-color: transparent;" text="Customers" translateY="50.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="appointmentBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="205.0" style="-fx-background-color: transparent;" text="Appointments" translateY="50.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="calendarBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Calendar" translateY="50.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="reportsBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Reports" translateY="50.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="205.0" fitWidth="303.0" pickOnBounds="true" preserveRatio="true" translateY="350.0">
+               <image>
+                  <Image url="@../Images/WGUOwlLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <TableView layoutX="241.0" layoutY="250.0" prefHeight="382.0" prefWidth="740.0">
+        <columns>
+          <TableColumn prefWidth="169.0" text="Name" />
+          <TableColumn prefWidth="452.0" text="Address" />
+            <TableColumn minWidth="0.0" prefWidth="118.0" text="Phone Number" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutX="241.0" layoutY="116.0" prefHeight="100.0" prefWidth="740.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: steelblue;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="26.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/User-Add.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="63.0" layoutY="27.0" text="Add Customer" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="createUserBtn" layoutY="-1.0" mnemonicParsing="false" onAction="#addCustomer" opacity="0.0" prefHeight="80.0" prefWidth="200.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: steelblue;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="28.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Data-Edit.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="65.0" layoutY="27.0" text="Edit User" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: steelblue;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/User-Delete.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="54.0" layoutY="27.0" text="Delete User" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

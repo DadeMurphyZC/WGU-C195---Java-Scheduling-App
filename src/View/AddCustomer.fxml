@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="310.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controller.AddCustomerController">
+   <children>
+      <BorderPane prefHeight="43.0" prefWidth="310.0" style="-fx-background-color: lightskyblue;">
+         <left>
+            <Label text="ADD NEW CUSTOMER" textFill="WHITE" translateX="25.0" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </left>
+      </BorderPane>
+      <Label alignment="CENTER" layoutX="55.0" layoutY="88.0" text="NAME">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField alignment="CENTER" layoutX="55.0" layoutY="105.0" prefHeight="25.0" prefWidth="204.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Label alignment="CENTER" layoutX="52.0" layoutY="130.0" text="ADDRESS">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField alignment="CENTER" layoutX="55.0" layoutY="147.0" prefHeight="25.0" prefWidth="204.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Label alignment="CENTER" layoutX="59.0" layoutY="172.0" text="ADDRESS 2">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField alignment="CENTER" layoutX="55.0" layoutY="189.0" prefHeight="25.0" prefWidth="204.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Label alignment="CENTER" layoutX="53.0" layoutY="217.0" text="CITY">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField alignment="CENTER" layoutX="55.0" layoutY="234.0" prefHeight="25.0" prefWidth="204.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Label alignment="CENTER" layoutX="54.0" layoutY="259.0" text="POSTAL CODE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField alignment="CENTER" layoutX="55.0" layoutY="276.0" prefHeight="25.0" prefWidth="204.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Label alignment="CENTER" layoutX="52.0" layoutY="301.0" text="PHONE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField alignment="CENTER" layoutX="55.0" layoutY="318.0" prefHeight="25.0" prefWidth="204.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Button layoutX="43.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="SAVE" translateX="5.0" />
+      <Button layoutX="125.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="CANCEL" />
+      <Button layoutX="199.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="CLEAR" />
+   </children>
+</AnchorPane>
