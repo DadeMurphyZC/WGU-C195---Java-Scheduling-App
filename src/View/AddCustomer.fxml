@@ -80,7 +80,7 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <Button layoutX="43.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="SAVE" translateX="5.0" />
+      <Button layoutX="43.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="SAVE" translateX="5.0" onAction="#addCustomer" />
       <Button layoutX="125.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="CANCEL" />
       <Button layoutX="199.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="CLEAR" />
    </children>
