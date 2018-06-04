@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import javafx.stage.Stage;
+import Model.Customer;
 
 
 /**
@@ -57,19 +58,19 @@ public class DBConnection {
             return false;
         }
     
-    public static void addCustomer() throws ClassNotFoundException, SQLException{
+    public static void addCustomerToDB(Customer c) throws ClassNotFoundException, SQLException{
         conn = dbConnect();
         pstmt = conn.prepareStatement("INSERT INTO customer "
                 + "(customerId, customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            pstmt.setInt(1, 1);
-            pstmt.setString(2, "addTest");
-            pstmt.setInt(3, 1);
-            pstmt.setInt(4, 1);
-            pstmt.setDate(5, new java.sql.Date(System.currentTimeMillis()));
-            pstmt.setString(6, "test");
-            pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
-            pstmt.setString(8, "test");
+            pstmt.setInt(1, c.getId());
+            pstmt.setString(2, c.getCustomerName());
+            pstmt.setInt(3, c.getAddressId());
+            pstmt.setInt(4, c.getActive());
+            pstmt.setDate(5, c.getCreateDate());
+            pstmt.setString(6, c.getCreatedBy());
+            pstmt.setTimestamp(7, c.getLastUpdate());
+            pstmt.setString(8, c.getLastUpdateBy());
         pstmt.executeUpdate();
     }
 }
