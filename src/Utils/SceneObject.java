@@ -48,4 +48,9 @@ public class SceneObject {
     public void loadPopup() throws IOException{
         stage.show();
     }
+    
+    public static synchronized void closeScene(Button btn){
+        stage = (Stage) btn.getScene().getWindow();
+        stage.close();
+    }
 }
