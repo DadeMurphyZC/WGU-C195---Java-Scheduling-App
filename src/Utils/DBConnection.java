@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import Model.Customer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import javafx.stage.Stage;
 
 
@@ -52,4 +56,20 @@ public class DBConnection {
             }
             return false;
         }
+    
+    public static void addCustomer() throws ClassNotFoundException, SQLException{
+        conn = dbConnect();
+        pstmt = conn.prepareStatement("INSERT INTO customer "
+                + "(customerId, customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy)"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, "addTest");
+            pstmt.setInt(3, 1);
+            pstmt.setInt(4, 1);
+            pstmt.setDate(5, new java.sql.Date(System.currentTimeMillis()));
+            pstmt.setString(6, "test");
+            pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+            pstmt.setString(8, "test");
+        pstmt.executeUpdate();
+    }
 }
