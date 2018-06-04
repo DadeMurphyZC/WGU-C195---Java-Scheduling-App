@@ -5,9 +5,13 @@
  */
 package Controller;
 
+import Utils.DBConnection;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -15,7 +19,15 @@ import javafx.fxml.Initializable;
  * @author cfonseca
  */
 public class AddCustomerController implements Initializable {
-
+    
+    @FXML 
+    private Button saveBtn;
+    
+    @FXML 
+    public void addCustomer() throws ClassNotFoundException, SQLException{
+        DBConnection.addCustomer();
+    }
+    
     /**
      * Initializes the controller class.
      */
