@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="310.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controller.AddCustomerController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddCustomerController">
    <children>
       <BorderPane prefHeight="43.0" prefWidth="310.0" style="-fx-background-color: lightskyblue;">
          <left>
@@ -25,7 +24,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField alignment="CENTER" layoutX="55.0" layoutY="105.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="name" alignment="CENTER" layoutX="55.0" layoutY="105.0" prefHeight="25.0" prefWidth="204.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -35,7 +34,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField alignment="CENTER" layoutX="55.0" layoutY="147.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="address" alignment="CENTER" layoutX="55.0" layoutY="147.0" prefHeight="25.0" prefWidth="204.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -45,7 +44,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField alignment="CENTER" layoutX="55.0" layoutY="189.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="address2" alignment="CENTER" layoutX="55.0" layoutY="189.0" prefHeight="25.0" prefWidth="204.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -55,7 +54,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField alignment="CENTER" layoutX="55.0" layoutY="234.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="city" alignment="CENTER" layoutX="55.0" layoutY="234.0" prefHeight="25.0" prefWidth="204.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -65,7 +64,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField alignment="CENTER" layoutX="55.0" layoutY="276.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="postalCode" alignment="CENTER" layoutX="55.0" layoutY="276.0" prefHeight="25.0" prefWidth="204.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -75,12 +74,12 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField alignment="CENTER" layoutX="55.0" layoutY="318.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="phone" alignment="CENTER" layoutX="55.0" layoutY="318.0" prefHeight="25.0" prefWidth="204.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextField>
-      <Button layoutX="43.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="SAVE" translateX="5.0" onAction="#addCustomer" />
+      <Button fx:id="saveBtn" layoutX="43.0" layoutY="374.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="25.0" prefWidth="60.0" text="SAVE" translateX="5.0" />
       <Button layoutX="125.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="CANCEL" />
       <Button layoutX="199.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="CLEAR" />
    </children>
