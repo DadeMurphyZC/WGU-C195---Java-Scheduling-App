@@ -12,6 +12,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import static Utils.SceneObject.closeScene;
+import Model.Customer;
+import javafx.scene.control.TextField;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * FXML Controller class
@@ -20,12 +25,21 @@ import javafx.scene.control.Button;
  */
 public class AddCustomerController implements Initializable {
     
-    @FXML 
-    private Button saveBtn;
+    @FXML private Button saveBtn;
+    @FXML TextField name;
+    @FXML TextField address;
+    @FXML TextField address2;
+    @FXML TextField city;
+    @FXML TextField postalCode;
+    @FXML TextField phone;
+    
+    
     
     @FXML 
     public void addCustomer() throws ClassNotFoundException, SQLException{
-        DBConnection.addCustomer();
+        Customer c = new Customer(1,name.getText(),1,1);
+        DBConnection.addCustomerToDB(c);
+        closeScene(saveBtn);
     }
     
     /**
