@@ -53,11 +53,11 @@
             </ImageView>
          </children>
       </VBox>
-      <TableView layoutX="241.0" layoutY="250.0" prefHeight="382.0" prefWidth="740.0">
+      <TableView fx:id="customerTable" layoutX="241.0" layoutY="250.0" prefHeight="382.0" prefWidth="740.0">
         <columns>
-          <TableColumn prefWidth="169.0" text="Name" />
-          <TableColumn prefWidth="452.0" text="Address" />
-            <TableColumn minWidth="0.0" prefWidth="118.0" text="Phone Number" />
+          <TableColumn fx:id="nameCol" prefWidth="169.0" text="Name" />
+          <TableColumn fx:id="addressCol" prefWidth="452.0" text="Address" />
+            <TableColumn fx:id="phoneCol" minWidth="0.0" prefWidth="118.0" text="Phone Number" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutX="241.0" layoutY="116.0" prefHeight="100.0" prefWidth="740.0">
