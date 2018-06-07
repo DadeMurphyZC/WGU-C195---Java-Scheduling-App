@@ -14,9 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import static Utils.SceneObject.closeScene;
 import Model.Customer;
-import javafx.scene.control.TextField;
 import java.sql.Date;
-import java.sql.Timestamp;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -24,30 +23,41 @@ import java.sql.Timestamp;
  * @author cfonseca
  */
 public class AddCustomerController implements Initializable {
-    
-    @FXML private Button saveBtn;
-    @FXML TextField name;
-    @FXML TextField address;
-    @FXML TextField address2;
-    @FXML TextField city;
-    @FXML TextField postalCode;
-    @FXML TextField phone;
-    
-    
-    
-    @FXML 
-    public void addCustomer() throws ClassNotFoundException, SQLException{
-        Customer c = new Customer(1,name.getText(),1,1);
+
+    @FXML
+    private Button saveBtn;
+    @FXML
+    TextField name;
+    @FXML
+    TextField address;
+    @FXML
+    TextField address2;
+    @FXML
+    TextField city;
+    @FXML
+    TextField postalCode;
+    @FXML
+    TextField phone;
+
+    @FXML
+    public synchronized void addCustomer() throws ClassNotFoundException, SQLException {
+        Customer c = new Customer();
+        c.setCustomerName(name.getText());
+        c.setCreateDate(new Date(System.currentTimeMillis()));
+        c.setCreatedBy("test");
+        c.setLastUpdateBy("test");
         DBConnection.addCustomerToDB(c);
+        CustomersController.customers.add(c);
         closeScene(saveBtn);
     }
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+
+    }
+
 }
