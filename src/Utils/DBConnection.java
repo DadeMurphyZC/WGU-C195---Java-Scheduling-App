@@ -5,7 +5,6 @@
  */
 package Utils;
 
-import Model.Customer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,11 +12,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.sql.Date;
-import java.time.LocalDateTime;
 import javafx.stage.Stage;
 import Model.Customer;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 
 
 /**
@@ -57,9 +57,31 @@ public class DBConnection {
             }
             return false;
         }
+    public static ArrayList<Customer> customerListDB = new ArrayList();
+    public static final Object lock = new Object();
+    
+    public static void getCustomers() throws ClassNotFoundException, SQLException{
+        conn = dbConnect();
+        pstmt = conn.prepareStatement("SELECT * from customer");
+        rs = pstmt.executeQuery();
+        while (rs.next()){
+            synchronized(lock){
+            Customer temp = new Customer();
+            temp.setCustomerName(rs.getString("customerName"));
+            customerListDB.add(temp);
+            }
+        }
+    }
     
     public static void addCustomerToDB(Customer c) throws ClassNotFoundException, SQLException{
         conn = dbConnect();
+        String check = "SELECT * FROM customer WHERE customerName = ?";
+        pstmt = conn.prepareStatement(check);
+        pstmt.setString(1, c.getCustomerName());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            AlertDiag.loginError();
+        } else {
         pstmt = conn.prepareStatement("INSERT INTO customer "
                 + "(customerId, customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -72,5 +94,6 @@ public class DBConnection {
             pstmt.setTimestamp(7, c.getLastUpdate());
             pstmt.setString(8, c.getLastUpdateBy());
         pstmt.executeUpdate();
+        }
     }
 }
