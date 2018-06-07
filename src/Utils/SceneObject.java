@@ -45,12 +45,14 @@ public class SceneObject {
         stage.show();
     } 
     
-    public void loadPopup() throws IOException{
+    public void loadPopup(Button button) throws IOException{
+        stage = (Stage) button.getScene().getWindow();
         stage.show();
     }
     
     public static synchronized void closeScene(Button btn){
         stage = (Stage) btn.getScene().getWindow();
         stage.close();
+        stage = null;
     }
 }
