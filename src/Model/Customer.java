@@ -11,6 +11,7 @@ import java.sql.Timestamp;
  *
  * @author cfonseca
  */
+
 public class Customer {
     private int id;
     private String customerName;
@@ -20,6 +21,8 @@ public class Customer {
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdateBy;
+    
+    public Customer(){};
 
     public Customer(int id, String customerName, int addressId, int active) {
         this.id = id;
