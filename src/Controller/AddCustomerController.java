@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Address;
 import Utils.DBConnection;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import static Utils.SceneObject.closeScene;
 import Model.Customer;
 import java.sql.Date;
+import static java.time.LocalDate.now;
 import javafx.scene.control.TextField;
 
 /**
@@ -43,9 +45,10 @@ public class AddCustomerController implements Initializable {
     public synchronized void addCustomer() throws ClassNotFoundException, SQLException {
         Customer c = new Customer();
         c.setCustomerName(name.getText());
-        c.setCreateDate(new Date(System.currentTimeMillis()));
+        c.setCreateDate(now());
         c.setCreatedBy("test");
         c.setLastUpdateBy("test");
+        c.setAddress(new Address(address.getText(),address2.getText(),1,postalCode.getText(),phone.getText(),Date.valueOf(now()),"test"));
         DBConnection.addCustomerToDB(c);
         CustomersController.customers.add(c);
         closeScene(saveBtn);
