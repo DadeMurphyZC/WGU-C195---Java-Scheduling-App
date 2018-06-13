@@ -22,6 +22,28 @@ public class Address {
     private Date createDate;
     private Timestamp lastUpdate;
     private String lastUpdateBy;
+    
+    public Address(){}
+
+    public Address(String address, String address2, String postalCode, String phone) {
+        this.address = address;
+        this.address2 = address2;
+        this.postalCode = postalCode;
+        this.phone = phone;
+    }
+    
+    
+    public Address(String address, String address2, int cityId, String postalCode, String phone, Date createDate, String lastUpdateBy) {
+        this.address = address;
+        this.address2 = address2;
+        this.cityId = cityId;
+        this.postalCode = postalCode;
+        this.phone = phone;
+        this.createDate = createDate;
+        this.lastUpdateBy = lastUpdateBy;
+    }
+    
+    
 
     public int getAddressId() {
         return addressId;
