@@ -5,22 +5,18 @@
  */
 package Model;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.*;
+import static java.time.LocalDate.now;
 /**
  *
  * @author cfonseca
  */
 
 public class Customer {
-    private int id;
-    private String customerName;
-    private int addressId;
-    private int active;
-    private Date createDate;
-    private String createdBy;
-    private Timestamp lastUpdate;
-    private String lastUpdateBy;
+    private int id, addressId, active;
+    private String customerName, createdBy, lastUpdateBy;
+    private LocalDate createDate;
+    private Address address;
     
     public Customer(){};
 
@@ -29,9 +25,9 @@ public class Customer {
         this.customerName = customerName;
         this.addressId = addressId;
         this.active = active;
-        this.createDate = new Date(System.currentTimeMillis());
+        this.createDate = now();
         this.createdBy = "test";
-        this.lastUpdate = new Timestamp(System.currentTimeMillis());
+        //this.lastUpdate = new Timestamp(System.currentTimeMillis());
         this.lastUpdateBy = "test";
     }
 
@@ -67,11 +63,11 @@ public class Customer {
         this.active = active;
     }
 
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 
@@ -81,14 +77,6 @@ public class Customer {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 
     public String getLastUpdateBy() {
