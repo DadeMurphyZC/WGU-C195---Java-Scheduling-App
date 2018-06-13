@@ -49,6 +49,7 @@ public class CustomersController implements Initializable {
     public void addCustomer(Event event) throws IOException {
         SceneObject sc = new SceneObject("AddCustomer.fxml");
         sc.loadPopup(createUserBtn);
+        customerTable.setItems(customers);
     }
 
     /**
@@ -56,11 +57,12 @@ public class CustomersController implements Initializable {
      * @param url
      * @param rb
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address1"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
         try {
             DBConnection.getCustomers();
