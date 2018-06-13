@@ -14,13 +14,13 @@ import static java.time.LocalDate.now;
 
 public class Customer {
     private int id, addressId, active;
-    private String customerName, createdBy, lastUpdateBy;
+    private String customerName, createdBy, lastUpdateBy, address1, phone;
     private LocalDate createDate;
     private Address address;
     
     public Customer(){};
 
-    public Customer(int id, String customerName, int addressId, int active) {
+    public Customer(int id, String customerName, int addressId, int active, Address address) {
         this.id = id;
         this.customerName = customerName;
         this.addressId = addressId;
@@ -29,6 +29,34 @@ public class Customer {
         this.createdBy = "test";
         //this.lastUpdate = new Timestamp(System.currentTimeMillis());
         this.lastUpdateBy = "test";
+        this.address = address;
+        this.address1 = address.getAddress();
+        this.phone = address.getPhone();
+        
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public int getId() {
