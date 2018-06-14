@@ -29,20 +29,12 @@ public class AddCustomerController implements Initializable {
     @FXML
     private Button saveBtn;
     @FXML
-    TextField name;
-    @FXML
-    TextField address;
-    @FXML
-    TextField address2;
-    @FXML
-    TextField city;
-    @FXML
-    TextField postalCode;
-    @FXML
-    TextField phone;
+    private TextField name, address, address2, city, postalCode, phone;
+
 
     @FXML
     public synchronized void addCustomer() throws ClassNotFoundException, SQLException {
+        //use TextField input to create a Customer object and add it to the db
         Customer c = new Customer();
         c.setCustomerName(name.getText());
         c.setCreateDate(now());
@@ -50,7 +42,12 @@ public class AddCustomerController implements Initializable {
         c.setLastUpdateBy("test");
         c.setAddress(new Address(address.getText(),address2.getText(),1,postalCode.getText(),phone.getText(),Date.valueOf(now()),"test"));
         DBConnection.addCustomerToDB(c);
+        //setting the address1, phone values here to update/refresh the TableView
+        //only want this for the ui TableView, setAddress1/setPhone are not needed in the db
+        c.setAddress1(c.getAddress().getAddress());
+        c.setPhone(c.getAddress().getPhone());
         CustomersController.customers.add(c);
+        System.out.println(c);
         closeScene(saveBtn);
     }
 
