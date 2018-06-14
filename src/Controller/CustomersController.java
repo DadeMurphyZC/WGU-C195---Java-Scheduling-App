@@ -36,11 +36,7 @@ public class CustomersController implements Initializable {
     @FXML
     TableView customerTable;
     @FXML
-    TableColumn nameCol;
-    @FXML
-    TableColumn addressCol;
-    @FXML
-    TableColumn phoneCol;
+    TableColumn nameCol, addressCol, phoneCol;
 
     @FXML
     public static ObservableList customers = FXCollections.observableArrayList();
@@ -49,13 +45,10 @@ public class CustomersController implements Initializable {
     public void addCustomer(Event event) throws IOException {
         SceneObject sc = new SceneObject("AddCustomer.fxml");
         sc.loadPopup(createUserBtn);
-        customerTable.setItems(customers);
     }
 
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     
     @Override
