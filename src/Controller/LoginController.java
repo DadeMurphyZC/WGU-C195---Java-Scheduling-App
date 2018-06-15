@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import Utils.DBConnection;
 import Utils.SceneObject;
+import javafx.scene.control.PasswordField;
 
 /**
  * FXML Controller class
@@ -34,7 +35,7 @@ public class LoginController implements Initializable {
     @FXML
     private TextField user;
     @FXML
-    private TextField pass;
+    private PasswordField pass;
     @FXML
     private Label error1;
     @FXML
