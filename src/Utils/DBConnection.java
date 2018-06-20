@@ -66,11 +66,9 @@ public class DBConnection {
                 + "WHERE customer.customerName = ?");
         pstmt.setString(1, name);
         rs = pstmt.executeQuery();
-        Customer temp = new Customer();
-        if (rs != null) {
+        Customer temp = null;
+        while (rs.next()) {
             temp = tempCustomer(rs);
-        } else {
-            System.out.println("CUSTOMER NOT FOUND.");
         }
         return temp;
     }
