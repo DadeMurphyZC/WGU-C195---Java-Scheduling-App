@@ -32,7 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class CustomersController implements Initializable {
 
     @FXML
-    Button createUserBtn;
+    Button createCustomerBtn, editCustomerBtn;
     @FXML
     TableView customerTable;
     @FXML
@@ -44,12 +44,13 @@ public class CustomersController implements Initializable {
     @FXML
     public void addCustomer(Event event) throws IOException {
         SceneObject sc = new SceneObject("AddCustomer.fxml");
-        sc.loadPopup(createUserBtn);
+        sc.loadPopup(createCustomerBtn);
     }
     
     @FXML
-    public void editCustomer(){
-        
+    public void editCustomer() throws IOException{
+        SceneObject sc = new SceneObject("AddCustomer.fxml");
+        sc.loadPopup(editCustomerBtn);
     }
     
     @FXML
