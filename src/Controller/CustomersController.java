@@ -46,6 +46,16 @@ public class CustomersController implements Initializable {
         SceneObject sc = new SceneObject("AddCustomer.fxml");
         sc.loadPopup(createUserBtn);
     }
+    
+    @FXML
+    public void editCustomer(){
+        
+    }
+    
+    @FXML
+    public void deleteCustomer(){
+        
+    }
 
     /**
      * Initializes the controller class.
