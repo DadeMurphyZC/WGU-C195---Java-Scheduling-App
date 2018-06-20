@@ -5,7 +5,6 @@
  */
 package Utils;
 
-import Model.Address;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +15,7 @@ import java.sql.Statement;
 import javafx.stage.Stage;
 import Model.Customer;
 import java.util.ArrayList;
+import static Utils.TempDBCustomer.*;
 
 /**
  *
@@ -58,22 +58,30 @@ public class DBConnection {
     public static ArrayList<Customer> customerListDB = new ArrayList();
     public static final Object lock = new Object();
 
+    public static Customer searchCustomer(String name) throws ClassNotFoundException, SQLException {
+        conn = dbConnect();
+        pstmt = conn.prepareStatement("SELECT * FROM customer "
+                + "JOIN address "
+                + "ON customer.customerId = address.addressId "
+                + "WHERE customer.customerName = ?");
+        pstmt.setString(1, name);
+        rs = pstmt.executeQuery();
+        Customer temp = new Customer();
+        if (rs != null) {
+            temp = tempCustomer(rs);
+        } else {
+            System.out.println("CUSTOMER NOT FOUND.");
+        }
+        return temp;
+    }
+
     public static void getCustomers() throws ClassNotFoundException, SQLException {
         conn = dbConnect();
         pstmt = conn.prepareStatement("SELECT * from customer JOIN address ON customer.customerId = address.addressId ");
         rs = pstmt.executeQuery();
         while (rs.next()) {
             synchronized (lock) {
-                Customer temp = new Customer();
-                temp.setId(rs.getInt("customerID"));
-                temp.setCustomerName(rs.getString("customerName"));
-                temp.setAddress(new Address(rs.getString("address"), 
-                        rs.getString("address2"), rs.getString("postalCode"), 
-                        rs.getString("phone")));
-                temp.setAddress1(temp.getAddress().getAddress()
-                        + " " + temp.getAddress().getAddress2() 
-                        + " ," + temp.getAddress().getPostalCode());
-                temp.setPhone(temp.getAddress().getPhone());
+                Customer temp = tempCustomer(rs);
                 customerListDB.add(temp);
             }
         }
@@ -87,37 +95,38 @@ public class DBConnection {
         rs = pstmt.executeQuery();
         if (rs.next()) {
             AlertDiag.loginError();
-        } else synchronized(lock) {
-            pstmt = conn.prepareStatement
-                    ("INSERT INTO customer "
-                    + "(customerId, customerName, addressId, active, "
-                    +"createDate, createdBy, lastUpdateBy)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
-            
-            pstmt2 = conn.prepareStatement("INSERT INTO address "
-            + "(address, address2, cityId, postalCode, "
-            + "phone, createDate, createdBy, lastUpdateBy)"
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            
-            pstmt.setInt(1, c.getId());
-            pstmt.setString(2, c.getCustomerName());
-            pstmt.setInt(3, c.getAddressId());
-            pstmt.setInt(4, c.getActive());
-            pstmt.setDate(5, java.sql.Date.valueOf(c.getCreateDate()));
-            pstmt.setString(6, c.getCreatedBy());
-            //pstmt.setTimestamp(7, c.getLastUpdate());
-            pstmt.setString(7, c.getLastUpdateBy());
-            pstmt.executeUpdate();
-            
-            pstmt2.setString(1, c.getAddress().getAddress());
-            pstmt2.setString(2, c.getAddress().getAddress2());
-            pstmt2.setInt(3, c.getAddress().getCityId());
-            pstmt2.setString(4, c.getAddress().getPostalCode());
-            pstmt2.setString(5, c.getAddress().getPhone());
-            pstmt2.setDate(6, java.sql.Date.valueOf(c.getCreateDate()));
-            pstmt2.setString(7, c.getCreatedBy());
-            pstmt2.setString(8, c.getLastUpdateBy());
-            pstmt2.executeUpdate();
+        } else {
+            synchronized (lock) {
+                pstmt = conn.prepareStatement("INSERT INTO customer "
+                        + "(customerId, customerName, addressId, active, "
+                        + "createDate, createdBy, lastUpdateBy)"
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+                pstmt2 = conn.prepareStatement("INSERT INTO address "
+                        + "(address, address2, cityId, postalCode, "
+                        + "phone, createDate, createdBy, lastUpdateBy)"
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+                pstmt.setInt(1, c.getId());
+                pstmt.setString(2, c.getCustomerName());
+                pstmt.setInt(3, c.getAddressId());
+                pstmt.setInt(4, c.getActive());
+                pstmt.setDate(5, java.sql.Date.valueOf(c.getCreateDate()));
+                pstmt.setString(6, c.getCreatedBy());
+                //pstmt.setTimestamp(7, c.getLastUpdate());
+                pstmt.setString(7, c.getLastUpdateBy());
+                pstmt.executeUpdate();
+
+                pstmt2.setString(1, c.getAddress().getAddress());
+                pstmt2.setString(2, c.getAddress().getAddress2());
+                pstmt2.setInt(3, c.getAddress().getCityId());
+                pstmt2.setString(4, c.getAddress().getPostalCode());
+                pstmt2.setString(5, c.getAddress().getPhone());
+                pstmt2.setDate(6, java.sql.Date.valueOf(c.getCreateDate()));
+                pstmt2.setString(7, c.getCreatedBy());
+                pstmt2.setString(8, c.getLastUpdateBy());
+                pstmt2.executeUpdate();
+            }
         }
     }
 }
