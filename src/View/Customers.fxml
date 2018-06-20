@@ -93,11 +93,12 @@
                         <Image url="@../Images/Data-Edit.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="65.0" layoutY="27.0" text="Edit User" textFill="WHITE">
+                  <Label layoutX="65.0" layoutY="27.0" text="Edit Customer" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
+                  <Button fx:id="editUserBtn" layoutX="-6.0" layoutY="-3.0" mnemonicParsing="false" onAction="#editCustomer" opacity="0.0" prefHeight="89.0" prefWidth="213.0" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -113,7 +114,7 @@
                         <Image url="@../Images/User-Delete.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="54.0" layoutY="27.0" text="Delete User" textFill="WHITE">
+                  <Label layoutX="54.0" layoutY="27.0" text="Delete Customer" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
