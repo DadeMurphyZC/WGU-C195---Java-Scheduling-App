@@ -109,10 +109,6 @@ public class DBConnection {
                 pstmt.setString(2, c.getCustomerName());
                 pstmt.setInt(3, c.getAddressId());
                 pstmt.setInt(4, c.getActive());
-                pstmt.setDate(5, java.sql.Date.valueOf(c.getCreateDate()));
-                pstmt.setString(6, c.getCreatedBy());
-                //pstmt.setTimestamp(7, c.getLastUpdate());
-                pstmt.setString(7, c.getLastUpdateBy());
                 pstmt.executeUpdate();
 
                 pstmt2.setString(1, c.getAddress().getAddress());
@@ -120,9 +116,6 @@ public class DBConnection {
                 pstmt2.setInt(3, c.getAddress().getCityId());
                 pstmt2.setString(4, c.getAddress().getPostalCode());
                 pstmt2.setString(5, c.getAddress().getPhone());
-                pstmt2.setDate(6, java.sql.Date.valueOf(c.getCreateDate()));
-                pstmt2.setString(7, c.getCreatedBy());
-                pstmt2.setString(8, c.getLastUpdateBy());
                 pstmt2.executeUpdate();
             }
         }
