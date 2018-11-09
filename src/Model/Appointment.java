@@ -15,19 +15,24 @@ public class Appointment {
     
     private int appointmentId;
     private int customerid;
-    private int userId;
     private String title;
     private String description;
     private String location;
     private String contact;
-    private String type;
     private String url;
     private Time start;
     private Time end;
-    private Time createDate;
-    private String createdBy;
-    private Time lastUpdate;
-    private String lastUpdatedBy;
+     
+    public Appointment(int appointmentId, String title, String description, String location, String contact, String url, Time start, Time end) {
+        this.appointmentId = appointmentId;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.contact = contact;
+        this.url = url;
+        this.start = start;
+        this.end = end;
+    }
 
     public int getAppointmentId() {
         return appointmentId;
@@ -43,14 +48,6 @@ public class Appointment {
 
     public void setCustomerid(int customerid) {
         this.customerid = customerid;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getTitle() {
@@ -85,14 +82,6 @@ public class Appointment {
         this.contact = contact;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -115,38 +104,6 @@ public class Appointment {
 
     public void setEnd(Time end) {
         this.end = end;
-    }
-
-    public Time getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Time createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Time getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Time lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
     }
     
 }
