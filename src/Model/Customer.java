@@ -14,8 +14,7 @@ import static java.time.LocalDate.now;
 
 public class Customer {
     private int id, addressId, active;
-    private String customerName, createdBy, lastUpdateBy, address1, phone;
-    private LocalDate createDate;
+    private String customerName, address1, phone;
     private Address address;
     
     public Customer(){};
@@ -25,10 +24,6 @@ public class Customer {
         this.customerName = customerName;
         this.addressId = addressId;
         this.active = active;
-        this.createDate = now();
-        this.createdBy = "test";
-        //this.lastUpdate = new Timestamp(System.currentTimeMillis());
-        this.lastUpdateBy = "test";
         this.address = address;
         this.address1 = address.getAddress();
         this.phone = address.getPhone();
@@ -90,31 +85,5 @@ public class Customer {
     public void setActive(int active) {
         this.active = active;
     }
-
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getLastUpdateBy() {
-        return lastUpdateBy;
-    }
-
-    public void setLastUpdateBy(String lastUpdateBy) {
-        this.lastUpdateBy = lastUpdateBy;
-    }
-    
-    
     
 }
