@@ -15,8 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import static Utils.SceneObject.closeScene;
 import Model.Customer;
-import java.sql.Date;
-import static java.time.LocalDate.now;
 import javafx.scene.control.TextField;
 
 /**
@@ -37,10 +35,7 @@ public class AddCustomerController implements Initializable {
         //use TextField input to create a Customer object and add it to the db
         Customer c = new Customer();
         c.setCustomerName(name.getText());
-        c.setCreateDate(now());
-        c.setCreatedBy("test");
-        c.setLastUpdateBy("test");
-        c.setAddress(new Address(address.getText(),address2.getText(),1,postalCode.getText(),phone.getText(),Date.valueOf(now()),"test"));
+        c.setAddress(new Address(address.getText(),address2.getText(),1,postalCode.getText(),phone.getText()));
         DBConnection.addCustomerToDB(c);
         //setting the address1, phone values here to update/refresh the TableView
         //only want this for the ui TableView, setAddress1/setPhone are not needed in the db
