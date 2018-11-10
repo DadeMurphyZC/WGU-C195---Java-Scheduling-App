@@ -5,22 +5,14 @@
  */
 package Model;
 
-import java.time.*;
-import static java.time.LocalDate.now;
-/**
- *
- * @author cfonseca
- */
-
 public class Customer {
-    private int id, addressId, active;
+    private int addressId, active;
     private String customerName, address1, phone;
     private Address address;
     
     public Customer(){};
 
-    public Customer(int id, String customerName, int addressId, int active, Address address) {
-        this.id = id;
+    public Customer(String customerName, int addressId, int active, Address address) {
         this.customerName = customerName;
         this.addressId = addressId;
         this.active = active;
@@ -52,14 +44,6 @@ public class Customer {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCustomerName() {
