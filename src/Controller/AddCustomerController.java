@@ -37,8 +37,6 @@ public class AddCustomerController implements Initializable {
         c.setCustomerName(name.getText());
         c.setAddress(new Address(address.getText(),address2.getText(),1,postalCode.getText(),phone.getText()));
         DBConnection.addCustomerToDB(c);
-        //setting the address1, phone values here to update/refresh the TableView
-        //only want this for the ui TableView, setAddress1/setPhone are not needed in the db
         c.setAddress1(c.getAddress().getAddress());
         c.setPhone(c.getAddress().getPhone());
         CustomersController.customers.add(c);
