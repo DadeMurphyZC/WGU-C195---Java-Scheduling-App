@@ -56,12 +56,11 @@ public class DBConnection {
         return false;
     }
     public static ArrayList<Customer> customerListDB = new ArrayList();
-    public static final Object lock = new Object();
 
-    public static Customer searchCustomer(String name) throws ClassNotFoundException, SQLException {
+    public static Customer searchCustomer(String name, int id) throws ClassNotFoundException, SQLException {
         conn = dbConnect();
         pstmt = conn.prepareStatement(
-                  "SELECT * FROM customer "
+                "SELECT * FROM customer "
                 + "JOIN address "
                 + "ON customer.customerId = address.addressId "
                 + "WHERE customer.customerName = ?");
@@ -78,14 +77,12 @@ public class DBConnection {
         conn = dbConnect();
         pstmt = conn.prepareStatement(
                 "SELECT * from customer "
-              + "JOIN address "
-              + "ON customer.customerId = address.addressId ");
+                + "JOIN address "
+                + "ON customer.customerId = address.addressId ");
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            synchronized (lock) {
-                Customer temp = tempCustomer(rs);
-                customerListDB.add(temp);
-            }
+            Customer temp = tempCustomer(rs);
+            customerListDB.add(temp);
         }
     }
 
@@ -98,46 +95,43 @@ public class DBConnection {
         if (rs.next()) {
             AlertDiag.loginError();
         } else {
-            synchronized (lock) {
-                
+            pstmt = conn.prepareStatement(
+                    "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)  ON DUPLICATE KEY UPDATE address = ?, address2 = ?,cityId = ?,postalCode = ?,phone = ?,createDate = ?,createdBy = ?,lastUpdateBy = ?"
+                            , Statement.RETURN_GENERATED_KEYS);
 
-                pstmt = conn.prepareStatement(
-                          "INSERT INTO address "
-                        + "(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy)"
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-                
-                pstmt.setString(1, c.getAddress().getAddress());
-                pstmt.setString(2, c.getAddress().getAddress2());
-                pstmt.setInt(3, 3);
-                pstmt.setString(4, c.getAddress().getPostalCode());
-                pstmt.setString(5, c.getAddress().getPhone());
-                pstmt.setDate(6, null);
-                pstmt.setString(7, "");
-                pstmt.setString(8, "");
-                pstmt.executeUpdate();
-                int newId = -1;
-                ResultSet rs = pstmt.getGeneratedKeys();
-                System.out.println(rs);
-                
-                if(rs.next()){
-                    newId = rs.getInt(1);
-                }
-                
-                pstmt2 = conn.prepareStatement(
-                          "INSERT INTO customer "
-                        + "(customerName, addressId, active, createDate, createdBy, lastUpdateBy)"
-                        + "VALUES (?, ?, ?, ?, ?, ?)");
+            pstmt.setString(1, c.getAddress().getAddress());
+            pstmt.setString(2, c.getAddress().getAddress2());
+            pstmt.setInt(3, 3);
+            pstmt.setString(4, c.getAddress().getPostalCode());
+            pstmt.setString(5, c.getAddress().getPhone());
+            pstmt.setDate(6, null);
+            pstmt.setString(7, "");
+            pstmt.setString(8, "");
+            pstmt.executeUpdate();
+            int newId = -1;
+            ResultSet rs = pstmt.getGeneratedKeys();
+            System.out.println(rs);
 
-                pstmt2.setString(1, c.getCustomerName());
-                pstmt2.setInt(2, newId);
-                pstmt2.setInt(3, c.getActive());
-                pstmt2.setDate(4, null);
-                pstmt2.setString(5, "");
-                pstmt2.setString(6, "");
-                pstmt2.executeUpdate();
-                
-                
+            if (rs.next()) {
+                newId = rs.getInt(1);
             }
+
+            pstmt2 = conn.prepareStatement(
+                    "INSERT INTO customer "
+                    + "(customerName, addressId, active, createDate, createdBy, lastUpdateBy)"
+                    + "VALUES (?, ?, ?, ?, ?, ?)"
+                        );
+
+            pstmt2.setString(1, c.getCustomerName());
+            pstmt2.setInt(2, newId);
+            pstmt2.setInt(3, c.getActive());
+            pstmt2.setDate(4, null);
+            pstmt2.setString(5, "");
+            pstmt2.setString(6, "");
+            pstmt2.executeUpdate();
         }
     }
 }
+
+
