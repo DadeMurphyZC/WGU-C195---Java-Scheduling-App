@@ -31,12 +31,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class CustomersController implements Initializable {
 
-    @FXML
-    Button createCustomerBtn, editCustomerBtn;
-    @FXML
-    TableView customerTable;
-    @FXML
-    TableColumn nameCol, addressCol, phoneCol;
+    @FXML Button createCustomerBtn, editCustomerBtn;
+    @FXML TableView customerTable;
+    @FXML TableColumn nameCol, addressCol, phoneCol;
+    public static Customer tempEditCustomer = new Customer();
 
     @FXML
     public static ObservableList customers = FXCollections.observableArrayList();
@@ -49,7 +47,7 @@ public class CustomersController implements Initializable {
     
     @FXML
     public void editCustomer() throws IOException{
-        SceneObject sc = new SceneObject("AddCustomer.fxml");
+        SceneObject sc = new SceneObject(editCustomerBtn, "EditCustomer.fxml");
         sc.loadPopup(editCustomerBtn);
     }
     
@@ -57,7 +55,17 @@ public class CustomersController implements Initializable {
     public void deleteCustomer(){
         
     }
-
+    
+    
+    
+    @FXML
+    public void editTest() throws ClassNotFoundException, SQLException, IOException{     
+        Customer temp = (Customer)customerTable.getSelectionModel().getSelectedItem();
+        tempEditCustomer = DBConnection.searchCustomer(temp.getCustomerName(), temp.getAddressId());
+        System.out.println("FROM CUSTOMERSCONTROLLER TEMP: "+tempEditCustomer.getCustomerName());
+        SceneObject sc = new SceneObject("EditCustomer.fxml");
+        sc.load();
+    }
     /**
      * Initializes the controller class.
      */
