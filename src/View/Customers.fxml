@@ -98,7 +98,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="editCustomerBtn" layoutX="-6.0" layoutY="-3.0" mnemonicParsing="false" onAction="#editCustomer" opacity="0.0" prefHeight="89.0" prefWidth="213.0" />
+                  <Button fx:id="editCustomerBtn" layoutX="-6.0" layoutY="-3.0" mnemonicParsing="false" onAction="#editTest" opacity="0.0" prefHeight="89.0" prefWidth="213.0" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
