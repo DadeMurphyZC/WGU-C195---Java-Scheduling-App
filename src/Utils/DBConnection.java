@@ -57,7 +57,7 @@ public class DBConnection {
     }
     public static ArrayList<Customer> customerListDB = new ArrayList();
 
-    public static Customer searchCustomer(String name, int id) throws ClassNotFoundException, SQLException {
+    public static Customer searchCustomer(String name) throws ClassNotFoundException, SQLException {
         conn = dbConnect();
         pstmt = conn.prepareStatement(
                 "SELECT * FROM customer "
@@ -97,7 +97,7 @@ public class DBConnection {
         } else {
             pstmt = conn.prepareStatement(
                     "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)  ON DUPLICATE KEY UPDATE address = ?, address2 = ?,cityId = ?,postalCode = ?,phone = ?,createDate = ?,createdBy = ?,lastUpdateBy = ?"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
                             , Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, c.getAddress().getAddress());
@@ -110,11 +110,11 @@ public class DBConnection {
             pstmt.setString(8, "");
             pstmt.executeUpdate();
             int newId = -1;
-            ResultSet rs = pstmt.getGeneratedKeys();
-            System.out.println(rs);
+            ResultSet rsKeys = pstmt.getGeneratedKeys();
+            System.out.println(rsKeys);
 
-            if (rs.next()) {
-                newId = rs.getInt(1);
+            if (rsKeys.next()) {
+                newId = rsKeys.getInt(1);
             }
 
             pstmt2 = conn.prepareStatement(
@@ -131,6 +131,20 @@ public class DBConnection {
             pstmt2.setString(6, "");
             pstmt2.executeUpdate();
         }
+    }
+    
+    public static void updateCustomer(String name, String updatedName) throws ClassNotFoundException, SQLException{
+        conn = dbConnect();
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM customer "
+                + "WHERE customer.customerName = ?", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+        pstmt.setString(1, name);
+        rs = pstmt.executeQuery();
+        while(rs.next()){
+            rs.updateString("customerName", updatedName);
+            rs.updateRow();
+        }
+        if(pstmt!=null){pstmt.close();}
     }
 }
 
