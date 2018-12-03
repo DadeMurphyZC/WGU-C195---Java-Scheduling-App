@@ -6,14 +6,11 @@
 package Controller;
 
 import Model.Customer;
-import Utils.DBConnection;
 import Utils.SceneObject;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -47,8 +44,8 @@ public class CustomersController implements Initializable {
     
     @FXML
     public void editCustomer() throws IOException{
-        SceneObject sc = new SceneObject(editCustomerBtn, "EditCustomer.fxml");
-        sc.loadPopup(editCustomerBtn);
+//        SceneObject sc = new SceneObject(editCustomerBtn, "EditCustomer.fxml");
+//        sc.loadPopup(editCustomerBtn);
     }
     
     @FXML
@@ -60,11 +57,7 @@ public class CustomersController implements Initializable {
     
     @FXML
     public void editTest() throws ClassNotFoundException, SQLException, IOException{     
-        Customer temp = (Customer)customerTable.getSelectionModel().getSelectedItem();
-        tempEditCustomer = DBConnection.searchCustomer(temp.getCustomerName(), temp.getAddressId());
-        System.out.println("FROM CUSTOMERSCONTROLLER TEMP: "+tempEditCustomer.getCustomerName());
-        SceneObject sc = new SceneObject("EditCustomer.fxml");
-        sc.load();
+
     }
     /**
      * Initializes the controller class.
@@ -76,14 +69,5 @@ public class CustomersController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address1"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        try {
-            DBConnection.getCustomers();
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CustomersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        DBConnection.customerListDB.forEach((c) -> {
-            customers.add(c);
-        });
-        customerTable.setItems(customers);
     }
 }
