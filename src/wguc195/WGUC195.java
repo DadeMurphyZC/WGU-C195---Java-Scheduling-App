@@ -6,10 +6,11 @@
 package wguc195;
 
 import javafx.application.Application;
+import javafx.stage.Stage;
+import Utils.SceneObject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 /**
  *
@@ -23,7 +24,6 @@ public class WGUC195 extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println(Utils.MySqlDateTime.getDateTime());
     }
     
     
