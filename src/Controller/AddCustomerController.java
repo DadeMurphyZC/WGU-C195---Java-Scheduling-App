@@ -5,16 +5,12 @@
  */
 package Controller;
 
-import Model.Address;
-import Utils.DBConnection;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import static Utils.SceneObject.closeScene;
-import Model.Customer;
 import javafx.scene.control.TextField;
 
 /**
@@ -32,16 +28,7 @@ public class AddCustomerController implements Initializable {
 
     @FXML
     public synchronized void addCustomer() throws ClassNotFoundException, SQLException {
-        //use TextField input to create a Customer object and add it to the db
-        Customer c = new Customer();
-        c.setCustomerName(name.getText());
-        c.setAddress(new Address(address.getText(),address2.getText(),1,postalCode.getText(),phone.getText()));
-        DBConnection.addCustomerToDB(c);
-        c.setAddress1(c.getAddress().getAddress());
-        c.setPhone(c.getAddress().getPhone());
-        CustomersController.customers.add(c);
-        System.out.println(c);
-        closeScene(saveBtn);
+        
     }
 
     /**
