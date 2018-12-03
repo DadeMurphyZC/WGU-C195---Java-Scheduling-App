@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
     @FXML
     public void login(Event event) throws ClassNotFoundException, SQLException, IOException {
         if (DBConnection.loginAuth(user.getText(), pass.getText()) == true) {
-            SceneObject sc = new SceneObject(loginButton,"Dashboard.fxml");
+            SceneObject sc = new SceneObject(loginButton,"Customers.fxml");
             sc.load();
         } else {
             error1.setVisible(true);
